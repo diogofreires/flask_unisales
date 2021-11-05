@@ -56,12 +56,13 @@ def atualizar():
     curso = Curso(nome, categoria, duracao, id=request.form['id'])
 
     arquivo = request.files['arquivo']
-    upload_path = app.config['UPLOAD_PATH']
-    timestamp = time.time()
-    deleta_arquivo(curso.id)
-    arquivo.save(f'{upload_path}/capa{curso.id}-{timestamp}.jpg')
+    if arquivo:
+        upload_path = app.config['UPLOAD_PATH']
+        timestamp = time.time()
+        deleta_arquivo(curso.id)
+        arquivo.save(f'{upload_path}/capa{curso.id}-{timestamp}.jpg')
     curso_dao.salvar(curso)
-    return redirect(url_for('index'))
+    return redirect(url_for('home'))
 
 
 @app.route('/deletar/<int:id>')
