@@ -62,7 +62,7 @@ def atualizar():
         deleta_arquivo(curso.id)
         arquivo.save(f'{upload_path}/capa{curso.id}-{timestamp}.jpg')
     curso_dao.salvar(curso)
-    return redirect(url_for('home'))
+    return redirect(url_for('index'))
 
 
 @app.route('/deletar/<int:id>')
